@@ -86,6 +86,80 @@ This endpoint creates a new user account in the system. It validates the incomin
 }
 ```
 
+## `POST /users/login`
+
+Authenticate an existing user.
+
+### Description
+
+This endpoint validates user login credentials and returns an authentication token along with the user object if the email and password are correct.
+
+### Request Headers
+
+- `Content-Type: application/json`
+
+### Request Body
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+### Field Requirements
+
+- `email`: required, must be a valid email address
+- `password`: required, minimum 6 characters
+
+### Success Response
+
+- Status: `200 OK`
+- Body:
+
+```json
+{
+  "user": {
+    "_id": "string",
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "socketId": "string | null"
+  },
+  "token": "string"
+}
+```
+
+### Example Response
+
+```json
+{
+  "user": {
+    "_id": "650c9eaf2a5d9a0012345678",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "socketId": null
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+### Unauthorized Error Response
+
+- Status: `401 Unauthorized`
+- Body:
+
+```json
+{
+  "error": "Invalid email or password"
+}
+```
+
 ### Notes
 
 - The endpoint currently expects `fullname.firstname` and `fullname.lastname` to be provided.
