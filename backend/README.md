@@ -52,6 +52,23 @@ This endpoint creates a new user account in the system. It validates the incomin
 }
 ```
 
+### Example Response
+
+```json
+{
+  "user": {
+    "_id": "650c9eaf2a5d9a0012345678",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "socketId": null
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
 ### Validation Error Response
 
 - Status: `400 Bad Request`
